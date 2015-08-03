@@ -13,3 +13,62 @@
  *= require_tree .
  *= require_self
  */
+
+@import url(http://fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic);
+
+body {
+  font-family: 'Muli', sans-serif;
+  font-size: 18px;
+  color: #777;
+  margin: 0 auto;
+}
+
+.nav {
+  background: #DFDFDF;
+  display: block;
+}
+
+.nav ul {
+  margin: 0 auto;
+}
+
+.nav li {
+  display: inline-block;
+  padding: 15px;
+}
+
+.nav a {
+  font-family: 'Muli', sans-serif;
+  font-size: .9em;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #777;
+  font-weight: 700;
+}
+
+.nav a:hover {
+  color: #A4A4A4;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+ }
+
+.content {
+  display: inline-block;
+  padding-top: 50px;
+  margin-left: 20px;
+}
+
+.icon-photo {
+  width: 25px;
+  margin-bottom: -4px;
+}
+
+.icon-edit {
+  width: 30px;
+  margin-bottom: -7px;
+}

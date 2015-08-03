@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+  <div class="post">
+    <div class="post-header">
+      <span><%= link_to "#{post.title}", post_path(post) %></span>
+      <p><%= post.created_at.strftime("%d %b %y") %></p>
+    </div>
+
+    <%= link_to image_tag(post.photo_url, class: "post-photo"), post_path(post) %>
+    <p><%= post.description %></p>
+    <div class="read-more">
+      <%= link_to "Read Post", post_path(post) %>
+    </div>
+  </div>
+<% end %>
