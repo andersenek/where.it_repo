@@ -13,7 +13,7 @@
   <% @comments.each do |comment| %>
     <div class = "comment">
     <h5><%= link_to "\"#{comment.subject}\"", post_comment_path(@post, comment) %></h5>
-    <p>Added: <%= comment.created_at.strftime("%b %d %y") %> by: <%= comment.user_email %></p>
+    <p>Added: <%= comment.created_at.strftime("%b %d %y") %> by: <%= comment.user_id %></p>
     <p><%= comment.comment %></p>
     </div>
   <% end %>

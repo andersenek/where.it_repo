@@ -63,6 +63,40 @@ body {
   margin-left: 20px;
 }
 
+.custom-layout {
+  font-size: .8em;
+  background: #DFDFDF;
+  padding: 50px;
+}
+
+.post {
+  width: 25%;
+  display: inline-table;
+  margin: 20px;
+}
+
+.post-photo {
+  width: 100%;
+}
+
+input {
+  display: block;
+  margin: 5px 0 20px 0;
+  padding: 9px;
+  border: solid 1px black;
+  width: 300px;
+  background: whitesmoke;
+}
+
+input[type=submit] {
+  width: auto;
+  padding: 9px 15px;
+  background-color: gray;
+  border: 0;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
 .icon-photo {
   width: 25px;
   margin-bottom: -4px;

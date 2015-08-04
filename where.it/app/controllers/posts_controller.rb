@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def show
     @user = current_user
     @post = Post.find(params[:id]) ## finding the post id
-    @comments = Comment.where(:post_id => @post)
+    @comments = @post.comments
     @comment = Comment.new ## Finding my comment id
   end
 
@@ -16,6 +16,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create!(post_params)
+    @post.user = current_user
+    @post.save
     redirect_to post_path(@post) # Knows to get the id of this post
   end
 
@@ -37,7 +39,7 @@ class PostsController < ApplicationController
 
   private # Anything defined under private is not a CRUD action and is just a helper to use in instances.
     def post_params
-      params.require(:post).permit(:title, :content, :photo_url)
+      params.require(:post).permit(:title, :brand_name, :retailer, :price, :size, :description, :photo_url)
     end
 
 end

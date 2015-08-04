@@ -1,0 +1,9 @@
+<div class="custom-layout">
+<h2>Edit Post: <%= @post.title %></h2>
+
+<%= render partial: "form" %>
+
+<%= form_for @post, method: :delete do |f| %>
+  <%= f.submit "Delete Post!" %>
+<% end %>
+</div>
