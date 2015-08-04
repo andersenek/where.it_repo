@@ -1,6 +1,17 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+
+    if search_term
+      @posts = Post.search(params[:search]).order("created_at DESC")
+    else
+      @posts = Post.all.order('created_at DESC')
+    end
+  end
+
+  def search_term
+    @search_term = params[:search]
+    Post.where("title LIKE '%?%'", @search_term)
   end
 
   def show
