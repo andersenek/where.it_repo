@@ -2,21 +2,17 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    if search_term
+    if params[:search]
       @posts = Post.search(params[:search]).order("created_at DESC")
     else
       @posts = Post.all.order('created_at DESC')
     end
   end
 
-  def search_term
-    @search_term = params[:search]
-    Post.where("title LIKE '%?%'", @search_term)
-  end
 
   def show
     @user = current_user
-    @post = Post.find(params[:id]) ## finding the post id
+    @post = Post.find(params[:id]) ## Finding the post id
     @comments = @post.comments
     @comment = Comment.new ## Finding my comment id
   end
@@ -46,6 +42,22 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def favorite
+    type = params[:type] # See posts/show
+    @post = Post.find(params[:id])
+    if type == "favorite" # If user selects 'favorite' on post
+      current_user.favorites << @post
+      redirect_to :back, notice: "You favorited #{@post.title}"
+
+    elsif type == "unfavorite" # Else user selects 'unfavorite' on post
+      current_user.favorites.delete(@post)
+      redirect_to :back, notice: "Unfavorited #{@post.title}"
+
+    else # Type missing, nothing happens
+      redirect_to :back, notice: "Nothing happened."
+    end
   end
 
   private # Anything defined under private is not a CRUD action and is just a helper to use in instances.

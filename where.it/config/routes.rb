@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   get 'welcome/index'
 
   root :to => "welcome#index"
@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :posts do
+    put :favorite, on: :member
+  end
 end

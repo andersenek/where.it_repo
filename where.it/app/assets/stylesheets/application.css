@@ -24,7 +24,7 @@ body {
 }
 
 .nav {
-  background: #DFDFDF;
+  background: rgba(0, 0, 0, 0.5);
   display: block;
 }
 
@@ -43,12 +43,12 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: .5px;
-  color: #777;
+  color: #C3C3C3;;
   font-weight: 700;
 }
 
 .nav a:hover {
-  color: #A4A4A4;
+  color: #FFF;
 }
 
 .container {
@@ -56,12 +56,6 @@ body {
   margin: 0 auto;
   padding-top: 20px;
  }
-
-.content {
-  display: inline-block;
-  padding-top: 50px;
-  margin-left: 20px;
-}
 
 .custom-layout {
   font-size: .8em;
@@ -91,7 +85,7 @@ input {
 input[type=submit] {
   width: auto;
   padding: 9px 15px;
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.7);
   border: 0;
   font-size: 14px;
   color: #FFFFFF;
