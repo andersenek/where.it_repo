@@ -7,8 +7,10 @@ class PostsController < ApplicationController
     else
       @posts = Post.all.order('created_at DESC')
     end
-  end
 
+    @favorites = current_user.favorites
+
+  end
 
   def show
     @user = current_user
