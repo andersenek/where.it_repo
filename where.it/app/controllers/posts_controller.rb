@@ -17,6 +17,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id]) ## Finding the post id
     @comments = @post.comments
     @comment = Comment.new ## Finding my comment id
+    @is_favorite = Post.get_favorite(params[:id]) # calling class method get_favorite
+    # @is_favorite = @post.favorite_posts.where(post_id: params[:post_id])
+    #where current user id matches user id on favorite posts
   end
 
   def new
@@ -36,14 +39,24 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post)
+
+    if @post.user_id == current_user.id # A post can only be edited by user who created the post
+      @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+
+    if @post.user_id == current_user.id # A post can only be deleted by user who created the post
+      @post.destroy
+      redirect_to posts_path(:request_type => 'all')
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   def favorite
@@ -61,6 +74,7 @@ class PostsController < ApplicationController
       redirect_to :back, notice: "Nothing happened."
     end
   end
+
 
   private # Anything defined under private is not a CRUD action and is just a helper to use in instances.
     def post_params

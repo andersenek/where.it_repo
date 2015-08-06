@@ -8,4 +8,13 @@ class Post < ActiveRecord::Base
     where("title ILIKE ?", "%#{search_term}%")
   end
 
+  def self.get_favorite(id)
+    favorited = FavoritePost.where(post_id: id)
+    if favorited.length > 0
+      return true
+    else
+      return false
+    end
+  end
+
 end

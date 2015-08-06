@@ -3,7 +3,7 @@
   <% if @posts.present? %> <!-- If posts are present -->
 
     <% @posts.each do |post| %> <!-- Show each searched post -->
-      <div class="post">
+      <div class="post-contain">
         <div class="post-header">
           <span><%= link_to "#{post.title}", post_path(post) %></span>
         </div>
@@ -26,7 +26,7 @@
 <% elsif params[:request_type] == 'favorites' %> <!-- If request is View Favorites -->
 
   <% @favorites.each do |post| %> <!-- Show each favorite post -->
-    <div class="post">
+    <div class="post-contain">
       <div class="post-header">
         <span><%= link_to "#{post.title}", post_path(post) %></span>
         <p><%= post.created_at.strftime("%d %b %y") %></p>
