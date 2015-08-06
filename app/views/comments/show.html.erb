@@ -1,0 +1,13 @@
+<div class="custom-layout">
+<h2>Comment:</h2>
+
+<h3>"<%= @comment.subject %>" <%= link_to "(edit)", edit_post_comment_path %></h3>
+
+<h4>By: <%= @show_user %></h4>
+
+<p><%= @comment.comment %></p>
+
+<%= form_for [@post, @comment], method: :delete do |f| %>
+  <%= f.submit "Delete Comment!", class: "button-delete" %>
+<% end %>
+</div>

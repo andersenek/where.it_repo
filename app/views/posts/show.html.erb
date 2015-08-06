@@ -1,0 +1,32 @@
+<div class="post-main">
+  <%= image_tag @post.photo_url, class: "post-photo" %>
+</div>
+
+<div class="post-side">
+
+  <% if @is_favorite %>
+    <%= link_to "unfavorite", favorite_post_path(@post, type: "unfavorite"), method: :put %>
+  <% else %>
+    <%= link_to "favorite",   favorite_post_path(@post, type: "favorite"), method: :put %>
+  <% end %>
+
+  <%= @post.title %> <%= link_to image_tag("pencil.png", class: "icon-edit"), edit_post_path %>
+  <p><%= link_to "Buy Now", @post.retailer, class: "button-link", :target => "_blank" %></p>
+
+  <p>Brand: <%= @post.brand_name %></p>
+  <p>Size: <%= @post.size %> | Price: <%= @post.price %></p>
+  <p>Details: <%= @post.description %></p>
+
+  <h3>Comments <%= link_to image_tag("plus.png", class: "icon-photo"), new_post_comment_path(@post) %></h3>
+
+  <% @comments.each do |comment| %>
+    <div class = "comment">
+    <h5><%= link_to "\"#{comment.subject}\"", post_comment_path(@post, comment) %></h5>
+    <p>Added: <%= comment.created_at.strftime("%b %d %y") %> by: <%= comment.user_id %></p>
+    <p><%= comment.comment %></p>
+    </div>
+  <% end %>
+
+  <h3>Leave a comment:</h3>
+  <%= render partial: "comments/form" %>
+</div>

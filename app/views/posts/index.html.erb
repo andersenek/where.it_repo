@@ -1,0 +1,47 @@
+<% if params[:request_type] == 'all' || params[:search] %> <!-- If request is View All -->
+
+  <% if @posts.present? %> <!-- If posts are present -->
+
+    <% @posts.each do |post| %> <!-- Show each searched post -->
+      <div class="post-contain">
+        <div class="post-header">
+          <span><%= link_to "#{post.title}", post_path(post) %></span>
+        </div>
+
+        <%= link_to image_tag(post.photo_url, class: "post-photo"), post_path(post) %>
+
+        <div class="read-more">
+          <%= link_to "View Look", post_path(post) %>
+        </div>
+      </div>
+    <% end %> <!-- End post loop -->
+
+  <% else %> <!-- Else show search could not be matched -->
+
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+
+  <% end %> <!-- End search loop -->
+
+
+<% elsif params[:request_type] == 'favorites' %> <!-- If request is View Favorites -->
+
+  <% @favorites.each do |post| %> <!-- Show each favorite post -->
+    <div class="post-contain">
+      <div class="post-header">
+        <span><%= link_to "#{post.title}", post_path(post) %></span>
+        <p><%= post.created_at.strftime("%d %b %y") %></p>
+      </div>
+
+      <%= link_to image_tag(post.photo_url, class: "post-photo"), post_path(post) %>
+
+      <div class="read-more">
+        <%= link_to "View Look", post_path(post) %>
+      </div>
+    </div>
+  <% end %> <!-- End post loop -->
+
+<% else %> <!-- If request came from somewhere else -->
+
+  <% redirect_to root_path %>
+
+<% end %> <!-- End params loop -->
